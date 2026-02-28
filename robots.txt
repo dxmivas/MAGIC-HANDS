@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /js/admin.js
+Disallow: /api/
+
+Sitemap: https://magichands-dz.com/sitemap.xml
