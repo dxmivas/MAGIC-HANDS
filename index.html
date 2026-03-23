@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Hands - متجر الهدايا والحقائب المصنوعة يدوياً في الجزائر</title>
+    <meta name="description" content="اكتشف عالم Magic Hands للهدايا الفريدة والحقائب والإكسسوارات المصنوعة يدوياً بكل حب في الجزائر. تسوق الآن واحصل على قطع مميزة.">
+    <meta name="keywords" content="Magic Hands, هدايا الجزائر, مصنوعات يدوية, حقائب يدوية, إكسسوارات, تسوق الجزائر, هدايا مميزة">
+    <meta name="author" content="Magic Hands">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://magichands-dz.com/">
+    <meta property="og:title" content="Magic Hands - متجر الهدايا والحقائب المصنوعة يدوياً">
+    <meta property="og:description" content="قطع فريدة مصنوعة يدوياً لتناسب ذوقك الرفيع. توصيل متوفر لجميع الولايات.">
+    <meta property="og:image" content="assets/logo-preview.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Magic Hands - متجر الهدايا والحقائب المصنوعة يدوياً">
+    <meta property="twitter:description" content="قطع فريدة مصنوعة يدوياً لتناسب ذوقك الرفيع. توصيل متوفر لجميع الولايات.">
+    <meta property="twitter:image" content="assets/logo-preview.jpg">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-hands"></i>
+                    <span>Magic Hands</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#home" data-i18n="nav.home">الرئيسية</a></li>
+                        <li><a href="#products" data-i18n="nav.products">المنتجات</a></li>
+                        <li><a href="#about" data-i18n="nav.about">من نحن</a></li>
+                        <li><a href="#contact" data-i18n="nav.contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="language-switcher">
+                        <select id="languageSelect" onchange="changeLanguage(this.value)">
+                            <option value="ar">العربية</option>
+                            <option value="fr">Français</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-i18n="hero.title">حقائب بلمستك الخاصة</h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">اختر حقيبتك المفضلة واجعلها مميزة برسوماتك الإبداعية</p>
+                <a href="#products" class="btn btn-primary" data-i18n="hero.cta">تسوق الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="products.title">منتجاتنا المميزة</h2>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="productSearch" data-i18n-placeholder="products.searchPlaceholder" placeholder="ابحث عن منتج..." oninput="handleSearch(this.value)">
+                </div>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="filter-btn active" onclick="filterProducts('all', event)" data-i18n="filter.all">الكل</button>
+                <div id="dynamicCategoryButtons"></div>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded dynamically from JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="about.title">من نحن</h2>
+            <div class="about-content">
+                <p data-i18n="about.description">Magic Hands متجر جزائري متخصص في تقديم حقائب وإكسسوارات عالية الجودة مع إمكانية التخصيص والرسم عليها حسب ذوقك الخاص. نوفر لك تجربة تسوق فريدة تجمع بين الجودة والإبداع.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="contact.title">تواصل معنا</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span id="contactPhone">+213 XXX XXX XXX</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span id="contactEmail">info@magichands.dz</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="contactAddress" data-i18n="contact.location">الجزائر</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3 data-i18n="cart.title">سلة التسوق</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-i18n="cart.total">المجموع:</span>
+                <span id="cartTotal">0 دج</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="proceedToCheckout()" data-i18n="cart.checkout">إتمام الطلب</button>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProductModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="product-detail" id="productDetail">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCheckoutModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="checkout-form">
+                <h2 data-i18n="checkout.title">إكمال الطلب</h2>
+                <form id="orderForm" onsubmit="submitOrder(event)">
+                    <div class="form-group">
+                        <label data-i18n="checkout.fullName">الاسم الكامل</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="checkout.phone">رقم الهاتف</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="checkout.wilaya">الولاية</label>
+                        <select id="wilayaSelect" name="wilaya" required onchange="updateShippingCost()">
+                            <option value="" data-i18n="checkout.selectWilaya">اختر الولاية</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="checkout.address">العنوان الكامل</label>
+                        <textarea name="address" required rows="3"></textarea>
+                    </div>
+                    <div class="order-summary">
+                        <div class="summary-row">
+                            <span data-i18n="checkout.subtotal">المجموع الفرعي:</span>
+                            <span id="checkoutSubtotal">0 دج</span>
+                        </div>
+                        <div class="summary-row">
+                            <span data-i18n="checkout.shipping">رسوم التوصيل:</span>
+                            <span id="checkoutShipping">0 دج</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span data-i18n="checkout.total">المجموع الكلي:</span>
+                            <span id="checkoutTotal">0 دج</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" data-i18n="checkout.confirm">تأكيد الطلب</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Magic Hands</h4>
+                    <p data-i18n="footer.description">متجرك الموثوق للحقائب المخصصة في الجزائر</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.links">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#home" data-i18n="nav.home">الرئيسية</a></li>
+                        <li><a href="#products" data-i18n="nav.products">المنتجات</a></li>
+                        <li><a href="#about" data-i18n="nav.about">من نحن</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.social">تابعنا</h4>
+                    <div class="social-links">
+                        <a href="#" id="footerFacebook" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" id="footerInstagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" id="footerWhatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Magic Hands. <span data-i18n="footer.rights">جميع الحقوق محفوظة</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
